@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IUser, UsersService} from './users.service';
+import {untilDestroyed} from "ngx-take-until-destroy";
 
 @Component({
   selector: 'app-users',
@@ -16,8 +17,13 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
 
     // todo: this will eventually call a swagger codegen service
-    this.UserService.getUsers().subscribe((users: IUser[]) => this.users = users);
+    this.UserService.getUsers()
+      .pipe(untilDestroyed(this))
+      .subscribe((users: IUser[]) => this.users = users);
 
+  }
+
+  ngOnDestroy() {
   }
 
 }

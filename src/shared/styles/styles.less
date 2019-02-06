@@ -1,0 +1,27 @@
+// global colors
+@branding-primary-rgb: 20, 174, 254;
+@branding-secondary-rgb: 248, 99, 99;
+
+
+// material buttons
+@branding-primary-bg: rgb(@branding-primary-rgb);
+@branding-secondary-bg: rgb(@branding-secondary-rgb);
+.btn {
+  &.primary {
+    background-color: @branding-primary-bg;
+
+    &:hover {
+      background-color: rgb(@branding-primary-rgb, 0.7);
+    }
+  }
+
+  &.secondary {
+    background-color: @branding-secondary-bg;
+
+    &:hover {
+      background-color: rgb(@branding-secondary-rgb, 0.7);
+    }
+  }
+}
+
+// todo: define error/warning/alert colors

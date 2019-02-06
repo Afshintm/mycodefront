@@ -1,0 +1,26 @@
+// responsive
+.mobile(@properties) {
+  @media only screen
+  and (max-width: 768px) {
+    @properties();
+  }
+}
+
+.tablet(@properties) {
+  @media only screen
+  and (min-width: 768px) and (max-width: 1024px) {
+    @properties();
+  }
+}
+
+.desktop(@properties) {
+  @media only screen and (min-width: 1024px) {
+    @properties();
+  }
+}
+
+.print(@properties) {
+  @media only print {
+    @properties();
+  }
+}

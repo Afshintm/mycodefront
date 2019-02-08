@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
+import { appStateReducers } from './redux/reducers/app.reducer';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,8 @@ import { UsersComponent } from './users/users.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(appStateReducers)
   ],
   providers: [],
   bootstrap: [AppComponent]

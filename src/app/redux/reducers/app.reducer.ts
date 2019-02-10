@@ -1,5 +1,5 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { AppConfigurationActions, ConfigurationActions } from '../actions/app.actions';
+import { AppConfigurationActions, ConfigurationActions } from '../actions/configuration.actions';
 import { IAppState } from '../app.state';
 
 export function configurationReducer(state: any = {}, action: AppConfigurationActions): any {

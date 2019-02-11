@@ -16,9 +16,6 @@ export class AuthCallbackComponent implements OnInit {
     this.authService.completeAuthentication().then(() => {
       this.router.navigate(['home']);
     });
-    /*setTimeout(() => {
-      this.router.navigate(['home']);
-    }, 5000);*/
   }
 
 }

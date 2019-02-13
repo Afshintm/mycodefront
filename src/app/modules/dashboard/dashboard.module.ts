@@ -7,7 +7,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SettingsComponent } from './settings/settings.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { SharedModule } from '../shared/shared.module';
-import { DailyActivitiesComponent } from './home/daily-activities/daily-activities.component';
 import { DashboardService } from './dashboard.service';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { DashboardService } from './dashboard.service';
   declarations: [
     DashboardComponent,
     HomeComponent,
-    DailyActivitiesComponent,
     SettingsComponent,
     ContactsComponent
   ],

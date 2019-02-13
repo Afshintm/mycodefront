@@ -1,8 +1,8 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { AppConfigurationActions, ConfigurationActions } from '../actions/configuration.actions';
 import { IAppState } from '../app.state';
-import { SomeDataActions } from '../actions/some-data.actions';
-import { SomeDataActionTypes } from '../actions/some-data.actions';
+import { DailyActivityActions } from '../actions/daily-activity.actions';
+import { DailyActivityTypes } from '../actions/daily-activity.actions';
 
 export function configurationReducer(state: any = {}, action: AppConfigurationActions): any {
   switch (action.type) {
@@ -15,25 +15,27 @@ export function configurationReducer(state: any = {}, action: AppConfigurationAc
   }
 }
 
-export function someDataReducer(state: any = {}, action: SomeDataActionTypes): any {
+export function dailyActivityReducer(state: any = [], action: DailyActivityTypes): any {
   switch (action.type) {
-    case SomeDataActions.LOAD_SOME_DATA:
-
-    case SomeDataActions.UPDATE_SOME_DATA: {
-      return {
+    case DailyActivityActions.LOAD_DAILY_ACTIVITY:
+      return [
+        ...state,
+      ];
+    case DailyActivityActions.UPDATE_DAILY_ACTIVITY: {
+      return [
         ...action.payload,
-      };
+      ];
     }
     default:
       return state;
   }
 }
 
-// export function someDataReducer(state: any = {}, action: SomeDataActionTypes): any {
+// export function dailyActivityReducer(state: any = {}, action: DailyActivityTypes): any {
 //   switch (action.type) {
-//     case SomeDataActions.LOAD_SOME_DATA:
+//     case DailyActivityActions.LOAD_DAILY_ACTIVITY:
 //       return Object.assign({}, state, action.payload);
-//     case SomeDataActions.UPDATE_SOME_DATA:
+//     case DailyActivityActions.UPDATE_DAILY_ACTIVITY:
 //       return Object.assign({}, state, action.payload);
 //     default:
 //       return state;
@@ -42,5 +44,5 @@ export function someDataReducer(state: any = {}, action: SomeDataActionTypes): a
 
 export const appStateReducers: ActionReducerMap<IAppState> = {
   configuration: configurationReducer,
-  someData: someDataReducer
+  dailyActivity: dailyActivityReducer
 };

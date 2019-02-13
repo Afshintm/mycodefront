@@ -4,7 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { SomeWidgetComponent } from './some-widget/some-widget.component';
+// import { SomeWidgetComponent } from './some-widget/some-widget.component';
 
 @NgModule({
   imports: [
@@ -15,7 +15,6 @@ import { SomeWidgetComponent } from './some-widget/some-widget.component';
   declarations: [
     DashboardComponent,
     HomeComponent,
-    SomeWidgetComponent
   ]
 })
 export class DashboardModule { }

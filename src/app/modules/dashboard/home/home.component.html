@@ -2,15 +2,19 @@
   <p>
     Welcome {{activeUser.name}}
   </p>
+
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+    type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+    Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
+    Lorem Ipsum.</p>
+
 </div>
 <div>
   <a class="waves-effect waves-light btn" (click)="logout()">Log out</a>
 
 </div>
-
-
-someData from redux store is {{someData|json}}
-
 
 <!--<app-some-widget></app-some-widget>-->
 
@@ -28,45 +32,10 @@ someData from redux store is {{someData|json}}
   <div class="card">
 
     <span class="card-title">Daily Activities</span>
-    <p>
-      <i class="material-icons">airline_seat_individual_suite</i>
-      Main Door
-    </p>
 
-    <p>
-      <i class="material-icons">airline_seat_legroom_extra</i>
-      Bedroom
-    </p>
-
-    <p>
-      <i class="material-icons">airline_seat_legroom_extra</i>
-      Restroom
-    </p>
-
-    <p>
-      <i class="material-icons">airline_seat_legroom_extra</i>
-      Bathroom
-    </p>
-
-    <p>
-      <i class="material-icons">airline_seat_legroom_extra</i>
-      Living Room
-    </p>
-
-    <p>
-      <i class="material-icons">airline_seat_legroom_extra</i>
-      Kitchen
-    </p>
-
-    <p>
-      <i class="material-icons">airline_seat_legroom_extra</i>
-      Refrigerator
-    </p>
-
-    <p>
-      <i class="material-icons">airline_seat_legroom_extra</i>
-      Not at home
-    </p>
+    <div *ngFor="let activity of dailyActivities">
+      <i class="material-icons">airline_seat_individual_suite</i> {{activity.name}} {{activity.totalHours}}
+    </div>
 
   </div>
 

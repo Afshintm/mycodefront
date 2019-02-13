@@ -1,0 +1,7 @@
+<h6 class="center-align"><strong>In the last 24 hours</strong></h6>
+<div class="daily-container">
+  <div *ngFor="let item of activities" class="daily-item-container center-align">
+    <a class="btn-floating btn-large waves-effect waves-light white"><i class="material-icons">party_mode</i></a>
+    <p><strong>{{item.duration}}</strong></p>
+  </div>
+</div>

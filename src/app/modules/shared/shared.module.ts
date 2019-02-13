@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedService } from './shared.service';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TimeAgoPipe
+  ],
+  exports: [
+    TimeAgoPipe
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [
     SharedService

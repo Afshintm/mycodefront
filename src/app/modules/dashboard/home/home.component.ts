@@ -13,7 +13,7 @@ import { IAppState } from '../../../redux/app.state';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   activeUser: any;
-
+  dt = new Date();
   constructor(private authService: AuthService,
               private store: Store<IAppState>) { }
 

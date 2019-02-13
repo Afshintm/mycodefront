@@ -4,16 +4,28 @@ import { DashboardComponent } from './dashboard.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { SettingsComponent } from './settings/settings.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { SharedModule } from '../shared/shared.module';
+import { DailyActivitiesComponent } from './home/daily-activities/daily-activities.component';
+import { DashboardService } from './dashboard.service';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    SharedModule,
     DashboardRoutingModule
   ],
   declarations: [
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    DailyActivitiesComponent,
+    SettingsComponent,
+    ContactsComponent
+  ],
+  providers: [
+    DashboardService
   ]
 })
 export class DashboardModule { }

@@ -10,23 +10,5 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DashboardService {
 
-  constructor(private store: Store<IAppState>,
-              private http: HttpClient) { }
-
-  getDailyActivities() {
-    return of([
-      {
-        type: 'sleep',
-        duration: '8 hours'
-      },
-      {
-        type: 'lunch',
-        duration: '2 times'
-      },
-      {
-        type: 'out',
-        duration: '2 times'
-      }
-    ]);
-  }
+  constructor() { }
 }

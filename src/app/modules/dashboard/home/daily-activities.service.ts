@@ -14,6 +14,39 @@ export class DailyActivitiesService {
   // todo : fetch from api
   getDailyActivities() {
 
+
+    // http://essence-communication-api-791146997.ap-southeast-2.elb.amazonaws.com/swagger/index.html
+    const apiResponse = {
+      "value": true,
+      "response": 0,
+      "responseDescription": "some description",
+      "activityTypes": [
+        {
+          "activityType": "some activity type",
+          "activities": [
+            {
+              "startTime": {},
+              "endTime": {},
+              "passThreshold": true
+            }
+          ]
+        }
+      ],
+      "missingInformation": [
+        {
+          "reason": "string",
+          "intervals": [
+            {
+              "startTime": "2019-02-13T23:39:55.936Z",
+              "endTime": "2019-02-13T23:39:55.936Z",
+              "previousActivity": "string"
+            }
+          ]
+        }
+      ]
+    };
+
+
     // call the reducer function
     this.store.dispatch(new UpdateDailyActivity([
       {

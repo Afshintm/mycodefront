@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  API_BASE_URL: 'https://api.dev.globalitfactory.eu/v1',
+  API_BASE_URL: 'http://essence-communication-api-791146997.ap-southeast-2.elb.amazonaws.com/api',
   authConfig: {
     authority: 'https://demo.identityserver.io',
     // authority: 'http://identitymanagementapi-1966185121.ap-southeast-2.elb.amazonaws.com',

@@ -38,21 +38,21 @@
 
         <div class="activity-type-container">
           <div class="activity-type">
-            <i class="material-icons">weekend</i>
+            <i class="material-icons">snooze</i>
           </div>
           8 hours
         </div>
 
         <div class="activity-type-container">
           <div class="activity-type">
-            <i class="material-icons">weekend</i>
+            <i class="material-icons">kitchen</i>
           </div>
           2 times
         </div>
 
         <div class="activity-type-container">
           <div class="activity-type">
-            <i class="material-icons">weekend</i>
+            <i class="material-icons">exit_to_app</i>
           </div>
           8 hours
         </div>
@@ -61,13 +61,18 @@
     </div>
 
     <div id="today-title">Today</div>
-    <div *ngFor="let activity of dailyActivities" class="activity">
-      <div class="name">{{activity.name}}</div>
-      <div class="time">
-        {{activity.time|date:'hh:mm'}}
-        <i class="material-icons">chevron_right</i>
+
+    <div id="timeline-container">
+      <div id="timeline-line"></div>
+      <div *ngFor="let activity of dailyActivities" class="activity">
+        <div class="name">{{activity.name}}</div>
+        <div class="time">
+          {{activity.time|date:'hh:mm'}}
+          <i class="material-icons">chevron_right</i>
+        </div>
       </div>
     </div>
+
   </div>
 
 </div>

@@ -16,7 +16,7 @@ export class DailyActivitiesService {
 
 
     // http://essence-communication-api-791146997.ap-southeast-2.elb.amazonaws.com/swagger/index.html
-    const apiResponse = {
+    let apiResponse = {
       "value": true,
       "response": 0,
       "responseDescription": "some description",
@@ -46,40 +46,28 @@ export class DailyActivitiesService {
       ]
     };
 
-
+    // data will be structured into following format:
     // call the reducer function
     this.store.dispatch(new UpdateDailyActivity([
       {
-        name: 'mainDoor',
-        totalHours: 5
+        name: 'Beryl came home',
+        time: "2019-02-15T11:39:55.936Z"
       },
       {
-        name: 'bedroom',
-        totalHours: 5
+        name: 'The fridge was opened',
+        time: "2019-02-13T23:39:55.936Z"
       },
       {
-        name: 'restroom',
-        totalHours: 5
+        name: 'The front door opened',
+        time: "2019-02-13T23:39:55.936Z"
       },
       {
-        name: 'bathroom',
-        totalHours: 5
+        name: 'The backdoor was opened',
+        time: "2019-02-13T23:39:55.936Z"
       },
       {
-        name: 'livingRoom',
-        totalHours: 5
-      },
-      {
-        name: 'kitchen',
-        totalHours: 5
-      },
-      {
-        name: 'refrigerator',
-        totalHours: 5
-      },
-      {
-        name: 'notAtHome',
-        totalHours: 5
+        name: 'Beryl is awake',
+        time: "2019-02-13T23:39:55.936Z"
       },
     ]));
 

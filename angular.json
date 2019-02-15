@@ -28,7 +28,7 @@
             ],
             "styles": [
               "node_modules/materialize-css/dist/css/materialize.css",
-              "src/shared/styles/styles.less"
+              "src/app/modules/shared/styles/styles.less"
             ],
             "scripts": [
               "node_modules/materialize-css/dist/js/materialize.js"

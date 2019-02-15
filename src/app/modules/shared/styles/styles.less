@@ -1,6 +1,15 @@
+@import (reference) "mixins";
+
 html, body, .container {
   height: 100%;
   font-family: Heebo;
+}
+
+.container {
+
+  .desktop({ width: 40%; });
+
+
 }
 
 a {
@@ -34,7 +43,7 @@ a {
   }
 }
 
-@media (max-width: 600px){
+@media (max-width: 600px) {
   .container {
     width: 100%;
   }

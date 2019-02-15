@@ -1,3 +1,13 @@
+html, body, .container {
+  height: 100%;
+  font-family: Heebo;
+}
+
+a {
+  cursor: pointer;
+  color: inherit;
+}
+
 // global colors
 @branding-primary-rgb: 20, 174, 254;
 @branding-secondary-rgb: 248, 99, 99;
@@ -21,6 +31,12 @@
     &:hover {
       background-color: rgb(@branding-secondary-rgb, 0.7);
     }
+  }
+}
+
+@media (max-width: 600px){
+  .container {
+    width: 100%;
   }
 }
 

@@ -14,6 +14,7 @@ import { DailyActivitiesService } from './daily-activities.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   activeUser: any;
+  dt = new Date();
   dailyActivities: DailyActivity[];
 
   constructor(private authService: AuthService,

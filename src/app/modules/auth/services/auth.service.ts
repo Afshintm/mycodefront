@@ -14,22 +14,37 @@ export class AuthService {
     });
   }
 
+  /**
+   * Check if user is logged in
+   */
   isLoggedIn(): boolean {
     return this.user != null && !this.user.expired;
   }
 
+  /**
+   * Get logged in user profile
+   */
   getUserProfile(): any {
     return this.user.profile;
   }
 
+  /**
+   * Get authorization header value to be added to all http requests
+   */
   getAuthorizationHeaderValue(): string {
     return `${this.user.token_type} ${this.user.access_token}`;
   }
 
+  /**
+   * Initiate authentication process
+   */
   startAuthentication(): Promise<void> {
     return this.manager.signinRedirect();
   }
 
+  /**
+   * Complete authentication process
+   */
   completeAuthentication(): Promise<void> {
     return this.manager.signinRedirectCallback().then(user => {
       this.user = user;
@@ -37,6 +52,9 @@ export class AuthService {
     });
   }
 
+  /**
+   * Initiate sign put process
+   */
   startSignoutMainWindow() {
     this.manager.signoutRedirect().then(resp => {
       console.log('signed out', resp);
@@ -45,6 +63,9 @@ export class AuthService {
     });
   }
 
+  /**
+   * Complete sign out process
+   */
   endSignoutMainWindow() {
     this.manager.signoutRedirectCallback().then(resp => {
       console.log('signed out', resp);

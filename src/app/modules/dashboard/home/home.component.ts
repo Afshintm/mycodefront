@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/services/auth.service';
 import { select, Store } from '@ngrx/store';
-import { configurationSelector } from '../../../redux/selectors/app.selector';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-import { AppConfiguration } from '../../../models/app_configuration';
 import { IAppState } from '../../../redux/app.state';
+import { dailyActivitySelector } from '../../../redux/selectors/app.selector';
+import { DailyActivity } from '../../../models/daily-activity.model';
+import { DailyActivitiesService } from './daily-activities.service';
 
 @Component({
   selector: 'app-home',
@@ -14,16 +15,26 @@ import { IAppState } from '../../../redux/app.state';
 export class HomeComponent implements OnInit, OnDestroy {
   activeUser: any;
   dt = new Date();
+  dailyActivities: DailyActivity[];
+
   constructor(private authService: AuthService,
-              private store: Store<IAppState>) { }
+              private store: Store<IAppState>,
+              private dailyActivitiesService: DailyActivitiesService,
+  ) {
+  }
 
   ngOnInit() {
-    // subscribe to the configuration object changes (triggered whenever configuration is updated in store)
-    this.store.pipe(select(configurationSelector)).pipe(untilDestroyed(this)).subscribe((config: AppConfiguration) => {
-      console.log(JSON.stringify(config));
-    });
 
     this.activeUser = this.authService.getUserProfile();
+
+    this.dailyActivitiesService.getDailyActivities();
+
+    // subscribe to changes
+    this.store
+      .pipe(select(dailyActivitySelector))
+      .pipe(untilDestroyed(this))
+      .subscribe((data: DailyActivity[]) =>
+        this.dailyActivities = data);
   }
 
   ngOnDestroy() {

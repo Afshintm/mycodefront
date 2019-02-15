@@ -1,6 +1,15 @@
+@import (reference) "mixins";
+
 html, body, .container {
   height: 100%;
   font-family: Heebo;
+}
+
+.container {
+
+  .desktop({ width: 40%; });
+
+
 }
 
 a {
@@ -34,10 +43,21 @@ a {
   }
 }
 
-@media (max-width: 600px){
+@media (max-width: 600px) {
   .container {
     width: 100%;
   }
 }
 
 // todo: define error/warning/alert colors
+
+@import url("https://use.typekit.net/kxm5oig.css");
+html, body {
+  height: 100%;
+  font-family: 'zeitung', serif;
+  font-family: 'chevin-pro', serif;
+  font-family: 'nimbus-sans', serif;
+  font-family: 'neue-haas-unica', serif;
+  font-family: 'proxima-nova', serif;
+  font-weight: 500;
+}

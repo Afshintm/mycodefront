@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../../auth/services/auth.service';
-import { select, Store } from '@ngrx/store';
-import { configurationSelector } from '../../../redux/selectors/app.selector';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-import { AppConfiguration } from '../../../models/app_configuration';
+import { DashboardService } from '../dashboard.service';
+import { IPerson } from '../../../models/person';
 import { IAppState } from '../../../redux/app.state';
+import { Store } from '@ngrx/store';
+import { personSelector } from '../../../redux/selectors/app.selector';
 
 @Component({
   selector: 'app-home',
@@ -12,24 +12,17 @@ import { IAppState } from '../../../redux/app.state';
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  activeUser: any;
   dt = new Date();
-  constructor(private authService: AuthService,
+  person: IPerson;
+  constructor(private dashboardService: DashboardService,
               private store: Store<IAppState>) { }
 
   ngOnInit() {
-    // subscribe to the configuration object changes (triggered whenever configuration is updated in store)
-    this.store.pipe(select(configurationSelector)).pipe(untilDestroyed(this)).subscribe((config: AppConfiguration) => {
-      console.log(JSON.stringify(config));
-    });
-
-    this.activeUser = this.authService.getUserProfile();
+    this.store.select(personSelector)
+      .pipe(untilDestroyed(this))
+      .subscribe((user: IPerson) => this.person = user);
   }
 
-  ngOnDestroy() {
-  }
-
-  logout() {
-    this.authService.startSignoutMainWindow();
+  ngOnDestroy(): void {
   }
 }

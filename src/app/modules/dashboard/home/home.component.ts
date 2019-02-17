@@ -27,14 +27,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.activeUser = this.authService.getUserProfile();
 
-    this.dailyActivitiesService.getDailyActivities();
+    console.log(this.dailyActivitiesService);
+    this.dailyActivitiesService.getDailyActivities().subscribe((dailyActivities) => {
+      this.dailyActivities = dailyActivities;
+    });
 
-    // subscribe to changes
-    this.store
-      .pipe(select(dailyActivitySelector))
-      .pipe(untilDestroyed(this))
-      .subscribe((data: DailyActivity[]) =>
-        this.dailyActivities = data);
+    // // subscribe to changes
+    // this.store
+    //   .pipe(select(dailyActivitySelector))
+    //   .pipe(untilDestroyed(this))
+    //   .subscribe((data: DailyActivity[]) =>
+    //     this.dailyActivities = data);
   }
 
   ngOnDestroy() {

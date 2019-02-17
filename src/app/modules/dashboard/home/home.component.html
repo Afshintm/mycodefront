@@ -32,46 +32,57 @@
 
   <div id="daily-activities" class="row">
 
-    <div id="summary">
-      <div id="title">In the last 24 hours</div>
-      <div id="activity-type-container">
+    <ng-container *ngIf="dailyActivities?.length">
 
-        <div class="activity-type-container">
-          <div class="activity-type">
-            <i class="material-icons">snooze</i>
+      <div id="summary">
+        <div id="title">In the last 24 hours</div>
+        <div id="activity-type-container">
+
+          <div class="activity-type-container">
+            <div class="activity-type">
+              <i class="material-icons">snooze</i>
+            </div>
+            8 hours
           </div>
-          8 hours
-        </div>
 
-        <div class="activity-type-container">
-          <div class="activity-type">
-            <i class="material-icons">kitchen</i>
+          <div class="activity-type-container">
+            <div class="activity-type">
+              <i class="material-icons">kitchen</i>
+            </div>
+            2 times
           </div>
-          2 times
-        </div>
 
-        <div class="activity-type-container">
-          <div class="activity-type">
-            <i class="material-icons">exit_to_app</i>
+          <div class="activity-type-container">
+            <div class="activity-type">
+              <i class="material-icons">exit_to_app</i>
+            </div>
+            8 hours
           </div>
-          8 hours
-        </div>
 
-      </div>
-    </div>
-
-    <div id="today-title">Today</div>
-
-    <div id="timeline-container">
-      <div id="timeline-line"></div>
-      <div *ngFor="let activity of dailyActivities" class="activity">
-        <div class="name">{{activity.name}}</div>
-        <div class="time">
-          {{activity.time|date:'hh:mm'}}
-          <i class="material-icons">chevron_right</i>
         </div>
       </div>
-    </div>
+
+      <div id="today-title">Today</div>
+
+      <div id="timeline-container">
+        <div id="timeline-line"></div>
+        <div *ngFor="let activity of dailyActivities" class="activity">
+          <div class="name">{{activity.name}}</div>
+          <div class="time">
+            {{activity.time|date:'hh:mm'}}
+            <i class="material-icons">chevron_right</i>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+    <ng-container *ngIf="!dailyActivities?.length">
+      <div id="no-result">
+        <i class="material-icons">sentiment_very_dissatisfied</i>
+        no activities found in the last 24 hours...
+      </div>
+    </ng-container>
 
   </div>
 

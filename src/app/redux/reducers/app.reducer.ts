@@ -32,6 +32,7 @@ export function dailyActivityReducer(state: any = [], action: DailyActivityTypes
     case DailyActivityActions.LOAD_DAILY_ACTIVITY:
       return [
         ...state,
+        ...action.payload,
       ];
     case DailyActivityActions.UPDATE_DAILY_ACTIVITY: {
       return [
@@ -42,17 +43,6 @@ export function dailyActivityReducer(state: any = [], action: DailyActivityTypes
       return state;
   }
 }
-
-// export function dailyActivityReducer(state: any = {}, action: DailyActivityTypes): any {
-//   switch (action.type) {
-//     case DailyActivityActions.LOAD_DAILY_ACTIVITY:
-//       return Object.assign({}, state, action.payload);
-//     case DailyActivityActions.UPDATE_DAILY_ACTIVITY:
-//       return Object.assign({}, state, action.payload);
-//     default:
-//       return state;
-//   }
-// }
 
 export const appStateReducers: ActionReducerMap<IAppState> = {
   configuration: configurationReducer,

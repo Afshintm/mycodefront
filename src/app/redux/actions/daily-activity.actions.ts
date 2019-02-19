@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import {DailyActivity} from '../../models/daily-activity.model';
+import {IDailyActivity} from '../../models/daily-activity';
 
 export class DailyActivityActions {
   static LOAD_DAILY_ACTIVITY = 'LOAD_DAILY_ACTIVITY';
@@ -10,14 +10,14 @@ export class DailyActivityActions {
 export class LoadDailyActivity implements Action {
   readonly type = DailyActivityActions.LOAD_DAILY_ACTIVITY;
 
-  constructor(public payload: DailyActivity[]) {
+  constructor(public payload: IDailyActivity[]) {
   }
 }
 
 export class UpdateDailyActivity implements Action {
   readonly type = DailyActivityActions.UPDATE_DAILY_ACTIVITY;
 
-  constructor(public payload: DailyActivity[]) {
+  constructor(public payload: IDailyActivity[]) {
   }
 }
 

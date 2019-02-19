@@ -10,7 +10,8 @@ import { LoadPerson } from '../../redux/actions/person.actions';
 })
 export class SharedService {
 
-  constructor(private store: Store<IAppState>) { }
+  constructor(private store: Store<IAppState>) {
+  }
 
   getConfiguration() {
     return of(

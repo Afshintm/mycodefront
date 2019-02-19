@@ -13,18 +13,10 @@ import { TestStore } from '../../../models/test/test_store';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../redux/app.state';
 import { AuthService } from '../../auth/services/auth.service';
-import { of } from 'rxjs';
-import { DailyActivitiesService } from './daily-activities.service';
 
 const MockAuthService = {
   getUserProfile: () => {
 
-  }
-};
-
-const MockDailyActivitiesService = {
-  getDailyActivities: () => {
-    return [];
   }
 };
 
@@ -51,8 +43,6 @@ fdescribe('HomeComponent', () => {
   ];
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let dailyActivitiesService: DailyActivitiesService;
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -69,9 +59,6 @@ fdescribe('HomeComponent', () => {
         {provide: Store, useClass: TestStore},
         {provide: ChangeDetectorRef, useValue: {}},
         {provide: AuthService, useValue: MockAuthService},
-        {
-          provide: DailyActivitiesService, useValue: MockDailyActivitiesService
-        }
       ]
     })
       .compileComponents();
@@ -80,8 +67,6 @@ fdescribe('HomeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
-    dailyActivitiesService = fixture.debugElement.injector.get(DailyActivitiesService);
-    spyOn(dailyActivitiesService, 'getDailyActivities').and.returnValue(of([]));
     fixture.detectChanges();
   });
 
@@ -99,7 +84,7 @@ fdescribe('HomeComponent', () => {
           title: 'Grandma',
           name: 'Beryl',
           note: 'Has been out since 8am'
-        }
+        },
       }
     );
     fixture.detectChanges();
@@ -157,10 +142,24 @@ fdescribe('HomeComponent', () => {
     }, 1000);
   });
 
+  it('display daily activities', () => {
+    component.dailyActivities = [
+      {
+        name: 'activity 1',
+        time: "2019-02-15T11:39:55.936Z"
+      },
+      {
+        name: 'activity 2',
+        time: "2019-02-13T23:39:55.936Z"
+      },
+    ];
+    const activities = fixture.debugElement.query(By.css('#daily-activities'));
+    expect(activities.nativeElement.innerText).toContain("activity 1");
+    expect(activities.nativeElement.innerText).toContain("activity 2");
+  });
 
-  it('display message when no activities exist', () => {
-    dailyActivitiesService.getDailyActivities = jasmine.createSpy().and.returnValue(of([]));
-    fixture.detectChanges();
+  it('display message when no activities are found', () => {
+    component.dailyActivities = [];
     const message = fixture.debugElement.query(By.css('#no-result'));
     expect(message).toBeTruthy();
     console.log(message);

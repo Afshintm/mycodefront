@@ -84,7 +84,8 @@ describe('HomeComponent', () => {
           title: 'Grandma',
           name: 'Beryl',
           note: 'Has been out since 8am'
-        }
+        },
+      dailyActivity: []
       }
     );
     fixture.detectChanges();

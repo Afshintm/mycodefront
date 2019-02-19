@@ -20,7 +20,7 @@ const MockAuthService = {
   }
 };
 
-fdescribe('HomeComponent', () => {
+describe('HomeComponent', () => {
   let store: TestStore<IAppState>;
   const routes: Routes = [
     {
@@ -84,7 +84,7 @@ fdescribe('HomeComponent', () => {
           title: 'Grandma',
           name: 'Beryl',
           note: 'Has been out since 8am'
-        },
+        }
       }
     );
     fixture.detectChanges();
@@ -153,6 +153,7 @@ fdescribe('HomeComponent', () => {
         time: "2019-02-13T23:39:55.936Z"
       },
     ];
+    fixture.detectChanges();
     const activities = fixture.debugElement.query(By.css('#daily-activities'));
     expect(activities.nativeElement.innerText).toContain("activity 1");
     expect(activities.nativeElement.innerText).toContain("activity 2");
@@ -160,9 +161,9 @@ fdescribe('HomeComponent', () => {
 
   it('display message when no activities are found', () => {
     component.dailyActivities = [];
+    fixture.detectChanges();
     const message = fixture.debugElement.query(By.css('#no-result'));
     expect(message).toBeTruthy();
-    console.log(message);
     expect(message.nativeElement.innerText).toContain("no activities found in the last 24 hours");
   });
 

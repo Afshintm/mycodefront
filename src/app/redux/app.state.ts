@@ -5,5 +5,5 @@ import { IDailyActivity } from '../models/daily-activity';
 export interface IAppState {
   configuration?: AppConfiguration;
   person?: IPerson;
-  dailyActivity?: IDailyActivity[];
+  dailyActivities?: IDailyActivity[];
 }

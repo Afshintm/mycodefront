@@ -8,7 +8,6 @@ import { IAppState } from '../../../redux/app.state';
 import { personSelector } from '../../../redux/selectors/app.selector';
 import { dailyActivitySelector } from '../../../redux/selectors/app.selector';
 import { IDailyActivity } from '../../../models/daily-activity';
-import { DailyActivitiesService } from './daily-activities.service';
 
 @Component({
   selector: 'app-home',
@@ -19,12 +18,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   dt = new Date();
   person: IPerson;
   dailyActivities: IDailyActivity[];
-  activeUser: any;
 
   constructor(private dashboardService: DashboardService,
               private authService: AuthService,
               private store: Store<IAppState>,
-              private dailyActivitiesService: DailyActivitiesService,
   ) {
   }
 
@@ -34,10 +31,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe((user: IPerson) => this.person = user);
 
-    this.activeUser = this.authService.getUserProfile();
-
     // get resident's last 24 hour activities
-    this.dailyActivitiesService.getDailyActivities();
+    this.dashboardService.getDailyActivities();
     this.store.select(dailyActivitySelector)
       .pipe(untilDestroyed(this))
       .subscribe((dailyActivities: IDailyActivity[]) => this.dailyActivities = dailyActivities);

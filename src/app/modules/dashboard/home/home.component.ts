@@ -16,8 +16,11 @@ import { IDailyActivity } from '../../../models/daily-activity';
 export class HomeComponent implements OnInit, OnDestroy {
   dt = new Date();
   person: IPerson;
+  dailyActivities: IDailyActivity[];
+
   constructor(private dashboardService: DashboardService,
-              private store: Store<IAppState>) { }
+              private store: Store<IAppState>) {
+  }
 
   ngOnInit() {
     this.store.select(personSelector)

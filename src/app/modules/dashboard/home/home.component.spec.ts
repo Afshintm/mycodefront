@@ -142,7 +142,7 @@ describe('HomeComponent', () => {
     }, 1000);
   });
 
-  it('display daily activities', () => {
+  it('displays daily activities', () => {
     component.dailyActivities = [
       {
         name: 'activity 1',
@@ -159,7 +159,7 @@ describe('HomeComponent', () => {
     expect(activities.nativeElement.innerText).toContain("activity 2");
   });
 
-  it('display message when no activities are found', () => {
+  it('displays message when no activities are found', () => {
     component.dailyActivities = [];
     fixture.detectChanges();
     const message = fixture.debugElement.query(By.css('#no-result'));

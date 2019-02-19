@@ -2,7 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/services/auth.service';
 import { select, Store } from '@ngrx/store';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { DashboardService } from '../dashboard.service';
+import { IPerson } from '../../../models/person';
 import { IAppState } from '../../../redux/app.state';
+import { Store } from '@ngrx/store';
+import { personSelector } from '../../../redux/selectors/app.selector';
 import { dailyActivitySelector } from '../../../redux/selectors/app.selector';
 import { DailyActivity } from '../../../models/daily-activity.model';
 import { DailyActivitiesService } from './daily-activities.service';
@@ -13,8 +17,10 @@ import { DailyActivitiesService } from './daily-activities.service';
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  activeUser: any;
   dt = new Date();
+  person: IPerson;
+  constructor(private dashboardService: DashboardService,
+              private store: Store<IAppState>) { }
   dailyActivities: DailyActivity[];
 
   constructor(private authService: AuthService,
@@ -24,6 +30,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.store.select(personSelector)
+      .pipe(untilDestroyed(this))
+      .subscribe((user: IPerson) => this.person = user);
 
     this.activeUser = this.authService.getUserProfile();
 
@@ -40,10 +49,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     //     this.dailyActivities = data);
   }
 
-  ngOnDestroy() {
-  }
-
-  logout() {
-    this.authService.startSignoutMainWindow();
+  ngOnDestroy(): void {
   }
 }

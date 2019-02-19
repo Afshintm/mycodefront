@@ -1,6 +1,7 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { AppConfigurationActions, ConfigurationActions } from '../actions/configuration.actions';
 import { IAppState } from '../app.state';
+import { AppPersonActions, PersonActions } from '../actions/person.actions';
 import { DailyActivityActions } from '../actions/daily-activity.actions';
 import { DailyActivityTypes } from '../actions/daily-activity.actions';
 
@@ -9,6 +10,17 @@ export function configurationReducer(state: any = {}, action: AppConfigurationAc
     case ConfigurationActions.LOAD_CONFIGURATION:
       return Object.assign({}, state, action.payload);
     case ConfigurationActions.UPDATE_CONFIGURATION:
+      return Object.assign({}, state, action.payload);
+    default:
+      return state;
+  }
+}
+
+export function personReducer(state: any = {}, action: AppPersonActions): any {
+  switch (action.type) {
+    case PersonActions.LOAD_PERSON:
+      return Object.assign({}, state, action.payload);
+    case PersonActions.UPDATE_PERSON:
       return Object.assign({}, state, action.payload);
     default:
       return state;
@@ -43,6 +55,8 @@ export function dailyActivityReducer(state: any = [], action: DailyActivityTypes
 // }
 
 export const appStateReducers: ActionReducerMap<IAppState> = {
+  configuration: configurationReducer,
+  person: personReducer
   configuration: configurationReducer,
   dailyActivity: dailyActivityReducer
 };

@@ -56,7 +56,6 @@ export function dailyActivityReducer(state: any = [], action: DailyActivityTypes
 
 export const appStateReducers: ActionReducerMap<IAppState> = {
   configuration: configurationReducer,
-  person: personReducer
-  configuration: configurationReducer,
+  person: personReducer,
   dailyActivity: dailyActivityReducer
 };

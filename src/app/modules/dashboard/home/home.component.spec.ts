@@ -1,6 +1,5 @@
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { Location } from '@angular/common';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { ContactsComponent } from '../contacts/contacts.component';
 import { SettingsComponent } from '../settings/settings.component';
@@ -13,13 +12,9 @@ import { ChangeDetectorRef, NgZone } from '@angular/core';
 import { TestStore } from '../../../models/test/test_store';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../redux/app.state';
-import { By } from '@angular/platform-browser';
-import { TimeAgoPipe } from '../../shared/pipes/time-ago.pipe';
 import { AuthService } from '../../auth/services/auth.service';
-import { MockStore } from '@ngrx/store/testing';
-import { Store } from '@ngrx/store';
-import { DailyActivitiesService } from './daily-activities.service';
 import { of } from 'rxjs';
+import { DailyActivitiesService } from './daily-activities.service';
 
 const MockAuthService = {
   getUserProfile: () => {
@@ -33,7 +28,7 @@ const MockDailyActivitiesService = {
   }
 };
 
-describe('HomeComponent', () => {
+fdescribe('HomeComponent', () => {
   let store: TestStore<IAppState>;
   const routes: Routes = [
     {
@@ -54,8 +49,6 @@ describe('HomeComponent', () => {
       component: ContactsComponent
     }
   ];
-
-describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let dailyActivitiesService: DailyActivitiesService;
@@ -73,12 +66,12 @@ describe('HomeComponent', () => {
         RouterTestingModule.withRoutes(routes)
       ],
       providers: [
-        { provide: Store, useClass: TestStore },
-        { provide: ChangeDetectorRef, useValue: {},
-        ,
+        {provide: Store, useClass: TestStore},
+        {provide: ChangeDetectorRef, useValue: {}},
+        {provide: AuthService, useValue: MockAuthService},
         {
           provide: DailyActivitiesService, useValue: MockDailyActivitiesService
-        }}
+        }
       ]
     })
       .compileComponents();

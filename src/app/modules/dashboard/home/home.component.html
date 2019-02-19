@@ -30,6 +30,10 @@
     </div>
   </div>
 
+  <div id="location-background" class="row">
+
+  </div>
+
   <div id="daily-activities" class="row">
 
     <ng-container *ngIf="dailyActivities?.length">
@@ -76,6 +80,9 @@
       </div>
 
     </ng-container>
+
+
+    <div id="load-more-btn">LOAD ANOTHER DAY</div>
 
     <ng-container *ngIf="!dailyActivities?.length">
       <div id="no-result">

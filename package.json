@@ -8,7 +8,8 @@
     "build prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy-aws": "aws s3 --profile ci-cd-user sync ./dist/homestay-intelligent-care-frontend/ s3://app.homestay.care --region ap-southeast-2"
   },
   "private": true,
   "dependencies": {

@@ -7,7 +7,7 @@ export const environment = {
     redirect_uri: 'http://app.homestay.care/auth-callback',
     post_logout_redirect_uri: 'http://app.homestay.care/',
     response_type: "id_token token",
-    scope: "openid profile email roles api1",
+    scope: "openid profile",
     filterProtocolClaims: true,
     loadUserInfo: true
   }

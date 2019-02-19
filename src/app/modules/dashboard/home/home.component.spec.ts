@@ -56,12 +56,12 @@ describe('HomeComponent', () => {
         RouterTestingModule.withRoutes(routes)
       ],
       providers: [
-        {provide: Store, useClass: TestStore},
-        {provide: ChangeDetectorRef, useValue: {}},
-        {provide: AuthService, useValue: MockAuthService},
+        { provide: Store, useClass: TestStore },
+        { provide: ChangeDetectorRef, useValue: {} },
+        { provide: AuthService, useValue: MockAuthService },
       ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {

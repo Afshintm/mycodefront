@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../redux/app.state';
-
 import { LoadDailyActivity } from '../../redux/actions/daily-activity.actions';
 
 @Injectable({

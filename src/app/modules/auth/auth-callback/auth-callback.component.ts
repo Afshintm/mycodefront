@@ -14,7 +14,7 @@ export class AuthCallbackComponent implements OnInit {
 
   ngOnInit() {
     this.authService.completeAuthentication().then(() => {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['home']);
     });
   }
 

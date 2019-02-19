@@ -21,14 +21,14 @@ const routes: Routes = [
     path: 'auth-callback',
     component: AuthCallbackComponent
   },
-  // {
-  //   path: 'users',
-  //   component: UsersComponent,
-  // },
-  // {
-  //   // todo: this will go to a 'page not found page'
-  //   path: '**', component: UsersComponent
-  // }
+  {
+    path: 'users',
+    component: UsersComponent,
+  },
+  {
+    // todo: this will go to a 'page not found page'
+    path: '**', component: UsersComponent
+  }
 ];
 
 @NgModule({

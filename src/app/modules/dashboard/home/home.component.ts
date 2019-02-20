@@ -13,14 +13,11 @@ import { personSelector } from '../../../redux/selectors/app.selector';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   dt = new Date();
-  person: IPerson;
+  person = this.store.select(personSelector);
   constructor(private dashboardService: DashboardService,
               private store: Store<IAppState>) { }
 
   ngOnInit() {
-    this.store.select(personSelector)
-      .pipe(untilDestroyed(this))
-      .subscribe((user: IPerson) => this.person = user);
   }
 
   ngOnDestroy(): void {

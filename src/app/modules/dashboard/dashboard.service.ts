@@ -14,8 +14,9 @@ export class DashboardService {
 
   getUser(): Observable<any> {
     return of({
-      name: 'Grandma Beryl',
-      note: 'Has been out since 11am'
+      title: 'Grandma',
+      name: 'Beryl',
+      note: 'Has been out since 8am'
     });
   }
 }

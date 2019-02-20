@@ -8,13 +8,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, Routes } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { TimeAgoPipe } from '../../shared/pipes/time-ago.pipe';
-import { ChangeDetectorRef, NgZone } from '@angular/core';
-import { TestStore } from '../../../models/test/test_store';
-import { Store } from '@ngrx/store';
+import { combineReducers, Store, StoreModule } from '@ngrx/store';
 import { IAppState } from '../../../redux/app.state';
+import { appStateReducers } from '../../../redux/reducers/app.reducer';
+import { LoadPerson } from '../../../redux/actions/person.actions';
 
 describe('HomeComponent', () => {
-  let store: TestStore<IAppState>;
+  let store: Store<IAppState>;
   const routes: Routes = [
     {
       path: '',
@@ -46,41 +46,24 @@ describe('HomeComponent', () => {
       ],
       imports: [
         SharedModule,
-        RouterTestingModule.withRoutes(routes)
-      ],
-      providers: [
-        { provide: Store, useClass: TestStore },
-        { provide: ChangeDetectorRef, useValue: {} }
+        RouterTestingModule.withRoutes(routes),
+        StoreModule.forRoot({
+          ...appStateReducers,
+          feature: combineReducers(appStateReducers),
+        })
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
+    store = TestBed.get(Store);
+
+    spyOn(store, 'dispatch').and.callThrough();
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  beforeEach(inject([Store], (testStore: TestStore<IAppState>) => {
-    // save store reference for use in tests
-    store = testStore;
-    // set default state
-    store.setState({
-        configuration: {
-          configProperty1: true,
-          configProperty2: true,
-          configProperty3: true
-        },
-        person: {
-          title: 'Grandma',
-          name: 'Beryl',
-          note: 'Has been out since 8am'
-        }
-      }
-    );
-    fixture.detectChanges();
-  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -102,36 +85,48 @@ describe('HomeComponent', () => {
       });
     })));
 
-  it('should show a few seconds ago', inject([ChangeDetectorRef, NgZone], (cdt, zone) => {
-    const pipe = new TimeAgoPipe(cdt, zone);
+  it('should show a few seconds ago', () => {
+    const pipe = new TimeAgoPipe();
     const testDate: Date = new Date();
     testDate.setSeconds(testDate.getSeconds() - 10);
     expect(pipe.transform(testDate.toISOString()))
       .toBe('a few seconds ago');
-  }));
+  });
 
-  it('should show a minute ago', inject([ChangeDetectorRef, NgZone], (cdt, zone) => {
-    const pipe = new TimeAgoPipe(cdt, zone);
+  it('should show a minute ago',  () => {
+    const pipe = new TimeAgoPipe();
     const testDate: Date = new Date();
     testDate.setSeconds(testDate.getSeconds() - 60);
     expect(pipe.transform(testDate.toISOString()))
       .toBe('a minute ago');
-  }));
-
-  it('person title should display Grandma Beryl', () => {
-    setTimeout(() => {
-      const getPersonTitle = () => fixture.debugElement.queryAll(By.css('.person-title'));
-      expect(getPersonTitle().length).toBe(1);
-      expect(getPersonTitle[0].nativeElement.textContent.trim()).toContain('Grandma Beryl');
-    }, 1000);
   });
 
-  it('person note should display Grandma Beryl', () => {
-    setTimeout(() => {
-      const getPersonNote = () => fixture.debugElement.queryAll(By.css('.person-note'));
-      expect(getPersonNote().length).toBe(1);
-      expect(getPersonNote[0].nativeElement.textContent.trim()).toContain('Has been out since 8am');
-    }, 1000);
+  it('person title should be Grandma', () => {
+    const action = new LoadPerson({
+      title: 'Grandma',
+      name: 'Beryl',
+      note: 'Has been out since 8am'
+    });
+
+    store.dispatch(action);
+
+    component.person.subscribe(data => {
+      expect(data.title).toBe('Grandma');
+    });
+  });
+
+  it('person name should be Beryl', () => {
+    const action = new LoadPerson({
+      title: 'Grandma',
+      name: 'Beryl',
+      note: 'Has been out since 8am'
+    });
+
+    store.dispatch(action);
+
+    component.person.subscribe(data => {
+      expect(data.name).toBe('Beryl');
+    });
   });
 
 });

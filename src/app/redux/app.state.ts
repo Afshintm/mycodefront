@@ -1,4 +1,4 @@
-import { AppConfiguration } from '../models/app_configuration';
+import { AppConfiguration } from '../models/app-configuration';
 import { IPerson } from '../models/person';
 
 export interface IAppState {

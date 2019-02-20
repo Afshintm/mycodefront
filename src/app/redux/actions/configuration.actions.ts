@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { AppConfiguration } from '../../models/app_configuration';
+import { AppConfiguration } from '../../models/app-configuration';
 
 export class ConfigurationActions {
   static LOAD_CONFIGURATION = 'LOAD_CONFIGURATION';

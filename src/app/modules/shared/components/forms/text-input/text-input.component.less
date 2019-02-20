@@ -1,0 +1,27 @@
+@import (reference) "../../../styles/styles";
+
+.input-field {
+
+  input {
+
+    &:hover:not([readonly]),
+    &:focus:not([readonly]) {
+      border-bottom: 1px solid rgb(@branding-primary-rgb);
+      box-shadow: 0 1px 0 0 rgb(@branding-primary-rgb);
+    }
+
+
+    &:focus:not([readonly]) + label {
+      color: rgb(@branding-primary-rgb);
+    }
+
+
+    &.ng-invalid:not(.ng-pristine) {
+      border-bottom: 1px solid red !important;
+      box-shadow: 0 1px 0 0 red;
+    }
+
+  }
+
+}
+

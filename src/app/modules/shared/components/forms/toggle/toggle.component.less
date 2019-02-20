@@ -1,0 +1,25 @@
+@import (reference) "../../../styles/styles";
+
+.switch {
+
+  label {
+
+    input[type=checkbox] {
+
+      &:checked + .lever {
+        background-color: rgba(@branding-primary-rgb, .5);
+
+        &::after {
+          background-color: @branding-primary-bg;
+        }
+      }
+    }
+
+    .lever {
+      margin: 0;
+    }
+
+
+  }
+}
+

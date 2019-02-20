@@ -61,10 +61,10 @@ describe('HomeComponent', () => {
         RouterTestingModule.withRoutes(routes)
       ],
       providers: [
-        { provide: AuthService, useValue: MockAuthService },
+        {provide: AuthService, useValue: MockAuthService},
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -104,7 +104,7 @@ describe('HomeComponent', () => {
       .toBe('a few seconds ago');
   });
 
-  it('should show a minute ago',  () => {
+  it('should show a minute ago', () => {
     const pipe = new TimeAgoPipe();
     const testDate: Date = new Date();
     testDate.setSeconds(testDate.getSeconds() - 60);

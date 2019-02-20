@@ -30,6 +30,7 @@ export class MessagingService {
         console.log("_messaging", _messaging);
         _messaging.onMessage = _messaging.onMessage.bind(_messaging);
         _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
+        // _messaging.setBackgroundMessageHandler = _messaging.setBackgroundMessageHandler.bind(_messaging);
       }
     );
   }
@@ -93,6 +94,7 @@ export class MessagingService {
 
   // Listen for token refresh
   monitorRefresh(user) {
+
     console.log("monitorRefresh");
     this.messaging.onTokenRefresh(() => {
       console.log('onTokenRefresh()');
@@ -103,6 +105,20 @@ export class MessagingService {
         })
         .catch(err => console.log(err, 'Unable to retrieve new token'));
     });
+
+
+    // this.messaging.setBackgroundMessageHandler((payload) => {
+    //   console.log('[firebase-messaging-sw.js] Received background message ', payload);
+    //   // Customize notification here
+    //   const notificationTitle = payload.data.title;
+    //   const notificationOptions = {
+    //     body: payload.data.body,
+    //     icon: '/assets/images/homestay-logo.png'
+    //   };
+    //   return this.messaging.showNotification(notificationTitle, notificationOptions);
+    // });
+
+
   }
 
 

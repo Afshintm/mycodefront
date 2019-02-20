@@ -1,4 +1,3 @@
-
 console.log('boo');
 
 
@@ -42,7 +41,6 @@ console.log('boo');
 //     showToken('Unable to retrieve refreshed token ', err);
 //   });
 // });
-
 
 
 // // Retrieve Firebase Messaging object.
@@ -96,7 +94,6 @@ console.log('boo');
 // });
 
 
-
 importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js');
 
@@ -106,3 +103,16 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
+
+
+messaging.setBackgroundMessageHandler(function (payload) {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  // Customize notification here
+  var notificationTitle = payload.data.title;
+  var notificationOptions = {
+    body: payload.data.body,
+    icon: '/assets/images/homestay-logo.png'
+  };
+  return self.registration.showNotification(notificationTitle,
+    notificationOptions);
+});

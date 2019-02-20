@@ -6,22 +6,13 @@ import { ChangeDetectorRef, NgZone, OnDestroy, Pipe, PipeTransform } from '@angu
 })
 export class TimeAgoPipe implements PipeTransform, OnDestroy {
   private timer: number;
-  constructor(private changeDetectorRef: ChangeDetectorRef, private ngZone: NgZone) {}
+  constructor() {}
 
   transform(value: string) {
     this.removeTimer();
     const d = new Date(value);
     const now = new Date();
     const seconds = Math.round(Math.abs((now.getTime() - d.getTime()) / 1000));
-    const timeToUpdate = (Number.isNaN(seconds)) ? 1000 : this.getSecondsUntilUpdate(seconds) * 1000;
-    this.timer = this.ngZone.runOutsideAngular(() => {
-      if (typeof window !== 'undefined') {
-        return window.setTimeout(() => {
-          this.ngZone.run(() => this.changeDetectorRef.markForCheck());
-        }, timeToUpdate);
-      }
-      return null;
-    });
     const minutes = Math.round(Math.abs(seconds / 60));
     const hours = Math.round(Math.abs(minutes / 60));
     const days = Math.round(Math.abs(hours / 24));

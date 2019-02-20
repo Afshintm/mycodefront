@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { forkJoin, Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../redux/app.state';
 import { LoadDailyActivity } from '../../redux/actions/daily-activity.actions';
@@ -36,7 +37,15 @@ export class DashboardService {
         time: "2019-02-13T23:39:55.936Z"
       },
     ]));
-
   }
+
+  getUser(): Observable<any> {
+    return of({
+      title: 'Grandma',
+      name: 'Beryl',
+      note: 'Has been out since 8am'
+    });
+  }
+
 
 }

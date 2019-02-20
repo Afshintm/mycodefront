@@ -15,7 +15,7 @@ import { IDailyActivity } from '../../../models/daily-activity';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   dt = new Date();
-  person: IPerson;
+  person = this.store.select(personSelector);
   dailyActivities: IDailyActivity[];
 
   constructor(private dashboardService: DashboardService,
@@ -23,9 +23,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.select(personSelector)
-      .pipe(untilDestroyed(this))
-      .subscribe((user: IPerson) => this.person = user);
 
     // get resident's last 24 hour activities
     this.dashboardService.getDailyActivities();

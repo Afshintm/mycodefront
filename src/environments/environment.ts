@@ -10,5 +10,13 @@ export const environment = {
     scope: "openid profile",
     filterProtocolClaims: true,
     loadUserInfo: true
+  },
+  firebase: {
+    apiKey: "AIzaSyDlEuuQA3VAO3aNMNv1dq0YxVEWQC7Ye4k",
+    authDomain: "test-project-406e1.firebaseapp.com",
+    databaseURL: "https://test-project-406e1.firebaseio.com",
+    projectId: "test-project-406e1",
+    storageBucket: "test-project-406e1.appspot.com",
+    messagingSenderId: "668809694067"
   }
 };

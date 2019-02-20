@@ -24,8 +24,8 @@
     </div>
     <div class="row">
       <div class="col s12 center-align">
-        <h4 class="person-title">{{person?.title}} {{person?.name}}</h4>
-        <h6 class="person-note">{{person?.note}}</h6>
+        <h4 class="person-title">{{(person | async)?.title}} {{(person | async)?.name}}</h4>
+        <h6 class="person-note">{{(person | async)?.note}}</h6>
       </div>
     </div>
   </div>

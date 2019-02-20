@@ -40,10 +40,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.messagingService.monitorRefresh(123);
 
     this.messagingService.currentMessage.subscribe(data => {
+      console.log(data);
       if (data) {
-        console.log(data);
         this.dailyActivities.unshift({
-          name: data.data.body,
+          name: data.data.title,
           time: String(new Date())
         });
       }
